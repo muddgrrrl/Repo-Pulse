@@ -24,3 +24,21 @@ python3 repo_pulse.py . --commits 10 --json
 Requires Python 3.8+ and Git. Run from a project or pass any folder inside it. Repo Pulse reads local Git data without fetching, staging, or committing. Ahead and behind counts reflect the upstream ref already present in your checkout. A fresh repository with no commits still reports its working-tree changes.
 
 [MIT license](LICENSE)
+
+## Development
+
+```sh
+python3 -m unittest discover -s tests -v
+ruff check .
+ruff format --check .
+```
+
+To run the same lint and formatting checks before each local commit, install Ruff
+and pre-commit on your PATH, then run `pre-commit install` in the checkout.
+
+```mermaid
+flowchart LR
+    A[Checkout path] --> B[Read Git refs and working tree]
+    B --> C[Build report]
+    C --> D[Terminal output or JSON]
+```
